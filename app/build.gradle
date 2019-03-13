@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.androidCompileSdkVersion
     defaultConfig {
         applicationId "com.wslerz.wanandroid"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion globalConfiguration.androidMinSdkVersion
+        targetSdkVersion globalConfiguration.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,10 +21,25 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    def supportDependencies = rootProject.extensions.getByName("ext").supportDependencies
+    implementation supportDependencies.appcompat_v7
+    implementation supportDependencies.constraint_layout
+    def testDependencies = rootProject.extensions.getByName("ext").testDependencies
+    testImplementation testDependencies.junit
+    androidTestImplementation testDependencies.runner
+    androidTestImplementation testDependencies.espressoCore
+    def otherDependencies = rootProject.extensions.getByName("ext").otherDependencies
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation otherDependencies.rxandroid
+    implementation otherDependencies.rxjava
+    implementation otherDependencies.retrofit
+    implementation otherDependencies.converter_gson
+    implementation otherDependencies.adapter_rxjava2
+    implementation otherDependencies.logging_interceptor
+    implementation otherDependencies.okhttp
+    implementation otherDependencies.PersistentCookieJar
+    implementation otherDependencies.swipebacklayout
+    implementation otherDependencies.butterKnife
+
 }

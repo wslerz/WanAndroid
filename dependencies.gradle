@@ -1,0 +1,54 @@
+ext {
+    //官方
+    androidCompileSdkVersion = 28
+    androidMinSdkVersion = 15
+    androidMaxSdkVersion = 28
+    androidTargetSdkVersion = 28
+    supportLibraryVersion = "28.0.0"
+    constraint_layoutVersion = '1.1.3'
+
+    //测试
+    junitVersion = '4.12'
+    runnerVersion = '1.0.2'
+    espressoCoreVersion = '3.0.2'
+
+    //非官方
+    rxandroidVersion = '2.0.1'
+    rxjavaVersion = '2.1.8'
+    retrofitVersion = '2.4.0'
+    converter_gsonVersion = '2.4.0'
+    adapter_rxjava2Version = '2.4.0'
+    logging_interceptorVersion = '3.8.1'
+    okhttpVersion = '3.8.1'
+    glideVersion = '4.8.0'
+    PersistentCookieJarVersion = 'v1.0.1'
+    swipebacklayoutVersion = '1.1.0'
+    butterKnifeVersion = '8.8.1'
+
+    //官方
+    supportDependencies = [
+            appcompat_v7     : "com.android.support:appcompat-v7:${supportLibraryVersion}",
+            constraint_layout: "com.android.support.constraint:constraint-layout:${constraint_layoutVersion}"
+    ]
+    //测试
+    testDependencies = [
+            junit       : "junit:junit:${junitVersion}",
+            runner      : "com.android.support.test:runner:${runnerVersion}",
+            espressoCore: "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}"
+    ]
+
+    //非官方
+    otherDependencies = [
+            rxandroid          : "io.reactivex.rxjava2:rxandroid:${rxandroidVersion}",
+            rxjava             : "io.reactivex.rxjava2:rxjava:${rxjavaVersion}",
+            retrofit           : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            converter_gson     : "com.squareup.retrofit2:converter-gson:${converter_gsonVersion}",
+            adapter_rxjava2    : "com.squareup.retrofit2:adapter-rxjava2:${adapter_rxjava2Version}",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${logging_interceptorVersion}",
+            okhttp             : "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+            glide              : "com.github.bumptech.glide:glide:${glideVersion}",
+            PersistentCookieJar: "com.github.franmontiel:PersistentCookieJar:${PersistentCookieJarVersion}",
+            swipebacklayout    : "me.imid.swipebacklayout.lib:library:${swipebacklayoutVersion}",//侧滑返回
+            butterKnife        : "com.jakewharton:butterknife:${butterKnifeVersion}",
+    ]
+}
