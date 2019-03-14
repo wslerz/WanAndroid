@@ -7,7 +7,7 @@ import java.util.List;
  * @time 2019/3/14 14:29
  * @desc
  */
-public class ChapterBean {
+public class WxArticleBean {
 
     /**
      * children : []

@@ -1,6 +1,6 @@
 package com.wslerz.wanandroid.http.manager;
 
-import com.wslerz.wanandroid.http.bean.ChapterBean;
+import com.wslerz.wanandroid.http.bean.WxArticleBean;
 import com.wslerz.wanandroid.http.service.ApiService;
 
 import java.util.List;
@@ -28,8 +28,8 @@ public class TestManager extends BaseRetrofitManager {
     }
 
 
-    public Flowable<List<ChapterBean>> getChapters() {
-        return apiService.getChapters().compose(this.<List<ChapterBean>>applySchedulers());
+    public Flowable<List<WxArticleBean>> getChapters() {
+        return apiService.getWxArticle().compose(this.<List<WxArticleBean>>applySchedulers());
     }
 
 }

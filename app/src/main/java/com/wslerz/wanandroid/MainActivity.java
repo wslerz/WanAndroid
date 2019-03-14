@@ -1,7 +1,7 @@
 package com.wslerz.wanandroid;
 
 import com.wslerz.wanandroid.base.BaseActivity;
-import com.wslerz.wanandroid.http.bean.ChapterBean;
+import com.wslerz.wanandroid.http.bean.WxArticleBean;
 import com.wslerz.wanandroid.mvp.contract.TestContract;
 import com.wslerz.wanandroid.mvp.presenterimpl.TestPresenterImpl;
 
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity<TestPresenterImpl> implements Tes
     }
 
     @Override
-    public void getChaptersSuc(List<ChapterBean> chapterBeanList) {
+    public void getChaptersSuc(List<WxArticleBean> chapterBeanList) {
 
     }
 

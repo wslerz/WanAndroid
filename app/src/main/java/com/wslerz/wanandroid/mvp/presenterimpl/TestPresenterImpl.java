@@ -1,7 +1,7 @@
 package com.wslerz.wanandroid.mvp.presenterimpl;
 
 import com.wslerz.wanandroid.base.BasePresenterImpl;
-import com.wslerz.wanandroid.http.bean.ChapterBean;
+import com.wslerz.wanandroid.http.bean.WxArticleBean;
 import com.wslerz.wanandroid.http.manager.TestManager;
 import com.wslerz.wanandroid.mvp.contract.TestContract;
 
@@ -18,9 +18,9 @@ public class TestPresenterImpl extends BasePresenterImpl<TestContract.TestView> 
     @Override
     public void getChapters() {
         TestManager.getInstance().getChapters()
-                .subscribe(new Consumer<List<ChapterBean>>() {
+                .subscribe(new Consumer<List<WxArticleBean>>() {
                     @Override
-                    public void accept(List<ChapterBean> chapterBeanList) throws Exception {
+                    public void accept(List<WxArticleBean> chapterBeanList) throws Exception {
                         mView.getChaptersSuc(chapterBeanList);
                     }
                 }, new Consumer<Throwable>() {
