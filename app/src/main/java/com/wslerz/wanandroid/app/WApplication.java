@@ -11,7 +11,7 @@ import android.os.Bundle;
  */
 public class WApplication extends Application {
 
-    private  static WApplication instance;
+    private static WApplication instance;
     public static WApplication getInstance() {
         return instance;
     }

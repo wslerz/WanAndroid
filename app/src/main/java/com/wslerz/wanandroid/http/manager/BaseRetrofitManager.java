@@ -5,9 +5,9 @@ import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.wslerz.wanandroid.app.Constant;
 import com.wslerz.wanandroid.app.WApplication;
-import com.wslerz.wanandroid.http.bean.BaseEntity;
-import com.wslerz.wanandroid.http.bean.BaseResponse;
-import com.wslerz.wanandroid.http.tool.HttpResultFunc;
+import com.wslerz.wanandroid.base.BaseEntity;
+import com.wslerz.wanandroid.base.BaseResponse;
+import com.wslerz.wanandroid.http.tool.SSLSocketFactoryUtils;
 
 import org.reactivestreams.Publisher;
 
@@ -52,7 +52,7 @@ public abstract class BaseRetrofitManager {
         Cache cache = new Cache(new File(Constant.FilePath.PATH_CACHE), CACHE_MAX);
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS) //设置超时
                 .readTimeout(20, TimeUnit.SECONDS)
@@ -61,9 +61,11 @@ public abstract class BaseRetrofitManager {
                 .cache(cache)
                 .retryOnConnectionFailure(true)
                 .addInterceptor(loggingInterceptor)
+                .sslSocketFactory(SSLSocketFactoryUtils.createSSLSocketFactory(), SSLSocketFactoryUtils.createTrustAllManager())
                 .cookieJar(new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(WApplication.getInstance())))
                 .build();
     }
+
 
     protected String getBaseUrl() {
         return Constant.Url.BASE_URL;
@@ -74,7 +76,7 @@ public abstract class BaseRetrofitManager {
             @Override
             public Publisher<T> apply(Flowable<BaseResponse<T>> upstream) {
                 return upstream
-                        .onErrorResumeNext(new HttpResultFunc<BaseResponse<T>>())
+//                        .onErrorResumeNext(new HttpResultFunc<BaseResponse<T>>())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .flatMap(new Function<BaseResponse<T>, Flowable<T>>() {

@@ -7,7 +7,8 @@ package com.wslerz.wanandroid.app;
  */
 public class Constant {
     public static class Url {
-        public static final String BASE_URL = "";
+        public static final String BASE_URL_S = "https://www.wanandroid.com/";
+        public static final String BASE_URL = "https://www.wanandroid.com/";
     }
 
     public static class FilePath {

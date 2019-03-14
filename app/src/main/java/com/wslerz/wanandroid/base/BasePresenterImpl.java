@@ -5,7 +5,7 @@ package com.wslerz.wanandroid.base;
  * @time 2019/3/13 9:52
  * @desc
  */
-public  class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
+public abstract class BasePresenterImpl<T extends BaseView> implements BasePresenter<T> {
 
     protected T mView;
 

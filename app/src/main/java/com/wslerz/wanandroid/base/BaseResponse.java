@@ -1,4 +1,4 @@
-package com.wslerz.wanandroid.http.bean;
+package com.wslerz.wanandroid.base;
 
 /**
  * @author lzz

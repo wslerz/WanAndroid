@@ -1,13 +1,43 @@
 package com.wslerz.wanandroid;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import com.wslerz.wanandroid.base.BaseActivity;
+import com.wslerz.wanandroid.http.bean.ChapterBean;
+import com.wslerz.wanandroid.mvp.contract.TestContract;
+import com.wslerz.wanandroid.mvp.presenterimpl.TestPresenterImpl;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.List;
+
+import butterknife.OnClick;
+
+public class MainActivity extends BaseActivity<TestPresenterImpl> implements TestContract.TestView {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected TestPresenterImpl initPresenter() {
+        return new TestPresenterImpl();
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void bindData() {
+        mPresenter.getChapters();
+    }
+
+    @Override
+    public void getChaptersSuc(List<ChapterBean> chapterBeanList) {
+
+    }
+
+    @Override
+    public void getChaptersFail(Throwable throwable) {
+        toast(throwable.getMessage());
+    }
+
+    @OnClick(R.id.tv)
+    public void onViewClicked() {
+        mPresenter.getChapters();
     }
 }
