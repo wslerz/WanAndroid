@@ -2,7 +2,9 @@ package com.wslerz.wanandroid.http.service;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 import com.wslerz.wanandroid.base.BaseResponse;
+import com.wslerz.wanandroid.http.bean.HomeBannerBean;
 import com.wslerz.wanandroid.http.bean.WxArticleBean;
+import com.wslerz.wanandroid.http.bean.WxArticleDetailBean;
 
 import java.util.List;
 
@@ -40,8 +42,8 @@ public interface ApiService {
      * @return 公众号历史数据
      */
     @GET("wxarticle/list/{id}/{pageNo}/json")
-    Flowable<BaseResponse<BaseEntity>> getWxArticleDetail(@Path("id") int id,
-                                                          @Path("pageNo") int pageNo);
+    Flowable<BaseResponse<WxArticleDetailBean>> getWxArticleDetail(@Path("id") int id,
+                                                                   @Path("pageNo") int pageNo);
 
     /**
      * 在某个公众号中搜索历史文章
@@ -53,9 +55,9 @@ public interface ApiService {
      * @return 在某个公众号中搜索历史文章
      */
     @GET("wxarticle/list/{id}/{pageNo}/json")
-    Flowable<BaseResponse<BaseEntity>> getWxArticleDetail(@Path("id") int id,
-                                                          @Path("pageNo") int pageNo,
-                                                          @Query("k") String java);
+    Flowable<BaseResponse<WxArticleDetailBean>> getWxArticleDetail(@Path("id") int id,
+                                                                   @Path("pageNo") int pageNo,
+                                                                   @Query("k") String java);
 
     /**
      * 最新项目tab (首页的第二个tab)
@@ -67,7 +69,7 @@ public interface ApiService {
      * @return 最新项目tab
      */
     @GET("article/listproject/{pageNo}/json")
-    Flowable<BaseResponse<BaseEntity>> getWxArticleTime(@Path("pageNo") int pageNo);
+    Flowable<BaseResponse<WxArticleDetailBean>> getWxArticleTime(@Path("pageNo") int pageNo);
 
 
     /**
@@ -78,7 +80,7 @@ public interface ApiService {
      * @return 首页文章列表
      */
     @GET("article/list/{pageNo}/json")
-    Flowable<BaseResponse<BaseEntity>> getHomeArticle(@Path("pageNo") int pageNo);
+    Flowable<BaseResponse<WxArticleDetailBean>> getHomeArticle(@Path("pageNo") int pageNo);
 
     /**
      * 首页banner
@@ -87,7 +89,7 @@ public interface ApiService {
      * @return 首页banner
      */
     @GET("banner/json")
-    Flowable<BaseResponse<BaseEntity>> getBanner();
+    Flowable<BaseResponse<List<HomeBannerBean>>> getHomeBanner();
 
 
     /**
