@@ -1,4 +1,4 @@
-package com.wslerz.wanandroid.http.bean;
+package com.wslerz.wanandroid.data.http.bean;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 

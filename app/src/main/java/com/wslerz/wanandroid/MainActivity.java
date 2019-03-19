@@ -1,7 +1,7 @@
 package com.wslerz.wanandroid;
 
 import com.wslerz.wanandroid.base.BaseActivity;
-import com.wslerz.wanandroid.http.bean.WxArticleBean;
+import com.wslerz.wanandroid.data.http.bean.ArticleListBean;
 import com.wslerz.wanandroid.mvp.contract.TestContract;
 import com.wslerz.wanandroid.mvp.presenterimpl.TestPresenterImpl;
 
@@ -23,21 +23,20 @@ public class MainActivity extends BaseActivity<TestPresenterImpl> implements Tes
 
     @Override
     protected void bindData() {
-        mPresenter.getChapters();
+        mPresenter.getWxArticle();
     }
 
     @Override
-    public void getChaptersSuc(List<WxArticleBean> chapterBeanList) {
-
+    public void getWxArticleSuc(List<ArticleListBean> chapterBeanList) {
     }
 
     @Override
-    public void getChaptersFail(Throwable throwable) {
+    public void getWxArticleFail(Throwable throwable) {
         toast(throwable.getMessage());
     }
 
     @OnClick(R.id.tv)
     public void onViewClicked() {
-        mPresenter.getChapters();
+        mPresenter.getWxArticle();
     }
 }

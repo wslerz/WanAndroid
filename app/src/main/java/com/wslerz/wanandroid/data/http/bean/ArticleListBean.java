@@ -1,4 +1,4 @@
-package com.wslerz.wanandroid.http.bean;
+package com.wslerz.wanandroid.data.http.bean;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @time 2019/3/14 14:29
  * @desc
  */
-public class WxArticleBean extends BaseEntity {
+public class ArticleListBean extends BaseEntity {
 
     /**
      * children : []

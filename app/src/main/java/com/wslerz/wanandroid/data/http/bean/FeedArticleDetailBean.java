@@ -1,4 +1,4 @@
-package com.wslerz.wanandroid.http.bean;
+package com.wslerz.wanandroid.data.http.bean;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @time 2019/3/18 15:42
  * @desc
  */
-public class WxArticleDetailBean  extends BaseEntity {
+public class FeedArticleDetailBean extends BaseEntity {
 
     /**
      * curPage : 1
@@ -27,7 +27,7 @@ public class WxArticleDetailBean  extends BaseEntity {
     private int pageCount;
     private int size;
     private int total;
-    private List<ArticleDataBean> datas;
+    private List<FeedArticleDataBean> datas;
 
     public int getCurPage() {
         return curPage;
@@ -77,11 +77,11 @@ public class WxArticleDetailBean  extends BaseEntity {
         this.total = total;
     }
 
-    public List<ArticleDataBean> getDatas() {
+    public List<FeedArticleDataBean> getDatas() {
         return datas;
     }
 
-    public void setDatas(List<ArticleDataBean> datas) {
+    public void setDatas(List<FeedArticleDataBean> datas) {
         this.datas = datas;
     }
 

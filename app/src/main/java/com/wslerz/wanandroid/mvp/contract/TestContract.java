@@ -2,7 +2,7 @@ package com.wslerz.wanandroid.mvp.contract;
 
 import com.wslerz.wanandroid.base.BasePresenter;
 import com.wslerz.wanandroid.base.BaseView;
-import com.wslerz.wanandroid.http.bean.WxArticleBean;
+import com.wslerz.wanandroid.data.http.bean.ArticleListBean;
 
 import java.util.List;
 
@@ -13,12 +13,12 @@ import java.util.List;
  */
 public interface TestContract {
     interface TestPresenter extends BasePresenter<TestView> {
-        void getChapters();
+        void getWxArticle();
     }
 
     interface TestView extends BaseView {
-        void getChaptersSuc(List<WxArticleBean> chapterBeanList);
+        void getWxArticleSuc(List<ArticleListBean> chapterBeanList);
 
-        void getChaptersFail(Throwable throwable);
+        void getWxArticleFail(Throwable throwable);
     }
 }

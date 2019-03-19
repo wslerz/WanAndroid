@@ -1,11 +1,13 @@
-package com.wslerz.wanandroid.http.bean;
+package com.wslerz.wanandroid.data.http.bean;
+
+import com.wslerz.wanandroid.base.BaseEntity;
 
 /**
  * @author lzz
  * @time 2019/3/18 17:41
  * @desc
  */
-public class HomeBannerBean {
+public class HomeBannerBean extends BaseEntity {
 
     /**
      * desc : 一起来做个App吧

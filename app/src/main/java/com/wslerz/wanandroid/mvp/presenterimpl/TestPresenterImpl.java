@@ -4,9 +4,10 @@ import android.annotation.SuppressLint;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 import com.wslerz.wanandroid.base.BasePresenterImpl;
-import com.wslerz.wanandroid.http.bean.WxArticleBean;
-import com.wslerz.wanandroid.http.bean.WxArticleDetailBean;
-import com.wslerz.wanandroid.http.manager.WanAndroidManager;
+import com.wslerz.wanandroid.data.http.bean.ArticleListBean;
+import com.wslerz.wanandroid.data.http.bean.RegisterBean;
+import com.wslerz.wanandroid.data.http.manager.HttpHelper;
+import com.wslerz.wanandroid.data.http.manager.HttpHelperImpl;
 import com.wslerz.wanandroid.mvp.contract.TestContract;
 
 import java.util.List;
@@ -20,38 +21,64 @@ import io.reactivex.functions.Consumer;
  */
 @SuppressLint("CheckResult")
 public class TestPresenterImpl extends BasePresenterImpl<TestContract.TestView> implements TestContract.TestPresenter {
-    private WanAndroidManager manager;
 
     public TestPresenterImpl() {
-        manager = WanAndroidManager.getInstance();
+
     }
 
     @Override
-    public void getChapters() {
-//        manager.getChapters()
-//                .subscribe(new Consumer<List<WxArticleBean>>() {
+    public void getWxArticle() {
+        addSubscribe(dataManager.getWxArticle()
+                .subscribe(new Consumer<List<ArticleListBean>>() {
+                    @Override
+                    public void accept(List<ArticleListBean> chapterBeanList) {
+                        mView.getWxArticleSuc(chapterBeanList);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) {
+                        mView.getWxArticleFail(throwable);
+                    }
+                }));
+
+//        addSubscribe(HttpHelperImpl.getInstance().register("wslerztest1", "wa19930925", "wa19930925")
+//                .subscribe(new Consumer<RegisterBean>() {
 //                    @Override
-//                    public void accept(List<WxArticleBean> chapterBeanList) {
-//                        mView.getChaptersSuc(chapterBeanList);
+//                    public void accept(RegisterBean baseEntity) throws Exception {
+//
 //                    }
 //                }, new Consumer<Throwable>() {
 //                    @Override
-//                    public void accept(Throwable throwable) {
-//                        mView.getChaptersFail(throwable);
+//                    public void accept(Throwable throwable) throws Exception {
+//
 //                    }
-//                });
-//        manager.getWxArticleDetail(408, 1).subscribe(new Consumer<WxArticleDetailBean>() {
-//            @Override
-//            public void accept(WxArticleDetailBean baseEntity) throws Exception {
+//                }));
+
+        addSubscribe(HttpHelperImpl.getInstance().login("wslerztest1", "wa19930925")
+                .subscribe(new Consumer<RegisterBean>() {
+                    @Override
+                    public void accept(RegisterBean baseEntity) throws Exception {
+                        mView.toast(baseEntity.getUsername());
+//                        addSubscribe(HttpHelperImpl.getInstance().logout()
+//                                .subscribe(new Consumer<BaseEntity>() {
+//                                    @Override
+//                                    public void accept(BaseEntity baseEntity) throws Exception {
 //
-//            }
-//        });
-//        manager.getWxArticleDetail(408, 1, "android").subscribe(new Consumer<WxArticleDetailBean>() {
-//            @Override
-//            public void accept(WxArticleDetailBean baseEntity) throws Exception {
+//                                    }
+//                                }, new Consumer<Throwable>() {
+//                                    @Override
+//                                    public void accept(Throwable throwable) throws Exception {
 //
-//            }
-//        });
+//                                    }
+//                                }));
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                }));
+
 
     }
 }

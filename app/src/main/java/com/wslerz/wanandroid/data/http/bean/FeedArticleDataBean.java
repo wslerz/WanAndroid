@@ -1,4 +1,4 @@
-package com.wslerz.wanandroid.http.bean;
+package com.wslerz.wanandroid.data.http.bean;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * @time 2019/3/18 16:12
  * @desc
  */
-public class ArticleDataBean extends BaseEntity {
+public class FeedArticleDataBean extends BaseEntity {
     /**
      * apkLink :
      * author : 鸿洋

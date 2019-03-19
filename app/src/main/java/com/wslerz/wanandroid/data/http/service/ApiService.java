@@ -1,10 +1,16 @@
-package com.wslerz.wanandroid.http.service;
+package com.wslerz.wanandroid.data.http.service;
 
 import com.wslerz.wanandroid.base.BaseEntity;
 import com.wslerz.wanandroid.base.BaseResponse;
-import com.wslerz.wanandroid.http.bean.HomeBannerBean;
-import com.wslerz.wanandroid.http.bean.WxArticleBean;
-import com.wslerz.wanandroid.http.bean.WxArticleDetailBean;
+import com.wslerz.wanandroid.data.http.bean.ArticleListBean;
+import com.wslerz.wanandroid.data.http.bean.FeedArticleDetailBean;
+import com.wslerz.wanandroid.data.http.bean.HomeBannerBean;
+import com.wslerz.wanandroid.data.http.bean.HotKeyBean;
+import com.wslerz.wanandroid.data.http.bean.KnowledgeHierarchyBean;
+import com.wslerz.wanandroid.data.http.bean.NavigationListBean;
+import com.wslerz.wanandroid.data.http.bean.RegisterBean;
+import com.wslerz.wanandroid.data.http.bean.WebsiteBean;
+import com.wslerz.wanandroid.data.http.manager.HttpHelper;
 
 import java.util.List;
 
@@ -21,7 +27,7 @@ import retrofit2.http.Query;
  * @time 2019/3/6 16:13
  * @desc 接口  https://www.wanandroid.com/blog/show/2
  */
-public interface ApiService {
+public interface ApiService  {
 
     /**
      * 获取公众号列表
@@ -30,7 +36,7 @@ public interface ApiService {
      * @return 公众号列表
      */
     @GET("wxarticle/chapters/json")
-    Flowable<BaseResponse<List<WxArticleBean>>> getWxArticle();
+    Flowable<BaseResponse<List<ArticleListBean>>> getWxArticle();
 
 
     /**
@@ -42,8 +48,8 @@ public interface ApiService {
      * @return 公众号历史数据
      */
     @GET("wxarticle/list/{id}/{pageNo}/json")
-    Flowable<BaseResponse<WxArticleDetailBean>> getWxArticleDetail(@Path("id") int id,
-                                                                   @Path("pageNo") int pageNo);
+    Flowable<BaseResponse<FeedArticleDetailBean>> getWxArticleDetail(@Path("id") int id,
+                                                                     @Path("pageNo") int pageNo);
 
     /**
      * 在某个公众号中搜索历史文章
@@ -55,9 +61,9 @@ public interface ApiService {
      * @return 在某个公众号中搜索历史文章
      */
     @GET("wxarticle/list/{id}/{pageNo}/json")
-    Flowable<BaseResponse<WxArticleDetailBean>> getWxArticleDetail(@Path("id") int id,
-                                                                   @Path("pageNo") int pageNo,
-                                                                   @Query("k") String java);
+    Flowable<BaseResponse<FeedArticleDetailBean>> getWxArticleDetail(@Path("id") int id,
+                                                                     @Path("pageNo") int pageNo,
+                                                                     @Query("k") String java);
 
     /**
      * 最新项目tab (首页的第二个tab)
@@ -69,7 +75,7 @@ public interface ApiService {
      * @return 最新项目tab
      */
     @GET("article/listproject/{pageNo}/json")
-    Flowable<BaseResponse<WxArticleDetailBean>> getWxArticleTime(@Path("pageNo") int pageNo);
+    Flowable<BaseResponse<FeedArticleDetailBean>> getWxArticleTime(@Path("pageNo") int pageNo);
 
 
     /**
@@ -80,7 +86,7 @@ public interface ApiService {
      * @return 首页文章列表
      */
     @GET("article/list/{pageNo}/json")
-    Flowable<BaseResponse<WxArticleDetailBean>> getHomeArticle(@Path("pageNo") int pageNo);
+    Flowable<BaseResponse<FeedArticleDetailBean>> getHomeArticle(@Path("pageNo") int pageNo);
 
     /**
      * 首页banner
@@ -99,7 +105,7 @@ public interface ApiService {
      * @return 常用网站
      */
     @GET("friend/json")
-    Flowable<BaseResponse<BaseEntity>> getFriend();
+    Flowable<BaseResponse<List<WebsiteBean>>> getFriend();
 
     /**
      * 搜索热词
@@ -108,7 +114,7 @@ public interface ApiService {
      * @return 搜索热词
      */
     @GET("hotkey/json")
-    Flowable<BaseResponse<BaseEntity>> getHotKey();
+    Flowable<BaseResponse<List<HotKeyBean>>> getHotKey();
 
 
     /**
@@ -118,7 +124,7 @@ public interface ApiService {
      * @return 体系数据
      */
     @GET("tree/json")
-    Flowable<BaseResponse<BaseEntity>> getTree();
+    Flowable<BaseResponse<List<KnowledgeHierarchyBean>>> getKnowledgeHierarchy();
 
     /**
      * 知识体系下的文章
@@ -129,8 +135,8 @@ public interface ApiService {
      * @return 知识体系下的文章
      */
     @GET("article/list/{pageNo}/json")
-    Flowable<BaseResponse<BaseEntity>> getTreeAirticle(@Path("pageNo") int pageNo,
-                                                       @Query("cid") int cid);
+    Flowable<BaseResponse<FeedArticleDetailBean>> getKnowledgeHierarchyDetail(@Path("pageNo") int pageNo,
+                                                                              @Query("cid") int cid);
 
     /**
      * 导航数据
@@ -139,8 +145,7 @@ public interface ApiService {
      * @return 导航数据
      */
     @GET("navi/json")
-    Flowable<BaseResponse<BaseEntity>> getNavi();
-
+    Flowable<BaseResponse<NavigationListBean>> getNavigationList();
 
     /**
      * 项目分类
@@ -149,7 +154,7 @@ public interface ApiService {
      * @return 项目分类
      */
     @GET("project/tree/json")
-    Flowable<BaseResponse<BaseEntity>> getProjectTree();
+    Flowable<BaseResponse<ArticleListBean>> getProjectTree();
 
 
     /**
@@ -161,8 +166,8 @@ public interface ApiService {
      * @return 项目列表数据
      */
     @GET("project/list/{pageNo}/json")
-    Flowable<BaseResponse<BaseEntity>> getProjectList(@Path("pageNo") int pageNo,
-                                                      @Query("cid") int cid);
+    Flowable<BaseResponse<FeedArticleDetailBean>> getProjectList(@Path("pageNo") int pageNo,
+                                                               @Query("cid") int cid);
 
     /**
      * 登录
@@ -174,7 +179,7 @@ public interface ApiService {
      */
     @POST("user/login")
     @FormUrlEncoded
-    Flowable<BaseResponse<BaseEntity>> login(@Field("username") String username,
+    Flowable<BaseResponse<RegisterBean>> login(@Field("username") String username,
                                              @Field("password") String password);
 
     /**
@@ -188,9 +193,9 @@ public interface ApiService {
      */
     @POST("user/register")
     @FormUrlEncoded
-    Flowable<BaseResponse<BaseEntity>> register(@Field("username") String username,
-                                                @Field("password") String password,
-                                                @Field("repassword") String repassword);
+    Flowable<BaseResponse<RegisterBean>> register(@Field("username") String username,
+                                                  @Field("password") String password,
+                                                  @Field("repassword") String repassword);
 
     /**
      * 退出

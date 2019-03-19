@@ -1,14 +1,24 @@
 package com.wslerz.wanandroid.app;
 
+import retrofit2.http.PUT;
+
 /**
  * @author lzz
  * @time 2019/3/6 17:04
  * @desc 常量
  */
-public class Constant {
+public class Constants {
     public static class Url {
         public static final String BASE_URL_S = "https://www.wanandroid.com/";
         public static final String BASE_URL = "https://www.wanandroid.com/";
+    }
+
+    public static class SharePrefer {
+
+        public static final String USER_NAME = "username";
+        public static final String PASSWORD = "password";
+        public static final String NIGHT_MODE = "night_mode";
+        public static final String LOGIN = "isLogin";
     }
 
     public static class FilePath {
@@ -19,6 +29,7 @@ public class Constant {
                 WApplication.getInstance().getCacheDir().getAbsolutePath() + java.io.File.separator + "data";
 
         public static final String PATH_CACHE = PATH_DATA + "/NetCache";
+        public static String SHARE_PREFER = "lzz_share_prefer";
     }
 
     public class HttpConstant {

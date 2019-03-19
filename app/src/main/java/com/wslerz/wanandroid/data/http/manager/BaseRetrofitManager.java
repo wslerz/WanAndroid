@@ -1,13 +1,13 @@
-package com.wslerz.wanandroid.http.manager;
+package com.wslerz.wanandroid.data.http.manager;
 
 import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
-import com.wslerz.wanandroid.app.Constant;
+import com.wslerz.wanandroid.app.Constants;
 import com.wslerz.wanandroid.app.WApplication;
 import com.wslerz.wanandroid.base.BaseEntity;
 import com.wslerz.wanandroid.base.BaseResponse;
-import com.wslerz.wanandroid.http.tool.SSLSocketFactoryUtils;
+import com.wslerz.wanandroid.data.http.tool.SSLSocketFactoryUtils;
 
 import org.reactivestreams.Publisher;
 
@@ -49,7 +49,7 @@ public abstract class BaseRetrofitManager {
     }
 
     private OkHttpClient getClient() {
-        Cache cache = new Cache(new File(Constant.FilePath.PATH_CACHE), CACHE_MAX);
+        Cache cache = new Cache(new File(Constants.FilePath.PATH_CACHE), CACHE_MAX);
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -68,7 +68,7 @@ public abstract class BaseRetrofitManager {
 
 
     protected String getBaseUrl() {
-        return Constant.Url.BASE_URL;
+        return Constants.Url.BASE_URL;
     }
 
     protected <T> FlowableTransformer<BaseResponse<T>, T> applySchedulers() {
