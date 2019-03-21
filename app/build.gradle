@@ -22,13 +22,17 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     def supportDependencies = rootProject.extensions.getByName("ext").supportDependencies
     implementation supportDependencies.appcompat_v7
     implementation supportDependencies.constraint_layout
+    implementation supportDependencies.design
+
     def testDependencies = rootProject.extensions.getByName("ext").testDependencies
     testImplementation testDependencies.junit
     androidTestImplementation testDependencies.runner
     androidTestImplementation testDependencies.espressoCore
+
     def otherDependencies = rootProject.extensions.getByName("ext").otherDependencies
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation otherDependencies.rxandroid

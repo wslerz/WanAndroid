@@ -28,7 +28,8 @@ ext {
     //官方
     supportDependencies = [
             appcompat_v7     : "com.android.support:appcompat-v7:${supportLibraryVersion}",
-            constraint_layout: "com.android.support.constraint:constraint-layout:${constraint_layoutVersion}"
+            constraint_layout: "com.android.support.constraint:constraint-layout:${constraint_layoutVersion}",
+            design           : "com.android.support:design:${supportLibraryVersion}",
     ]
     //测试
     testDependencies = [

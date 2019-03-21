@@ -20,7 +20,7 @@ public abstract class BaseActivity<P extends BasePresenterImpl> extends BaseSwip
     protected P mPresenter;
     protected Unbinder unbinder;
 
-    private static String TAG = "BaseActivity";
+    private String TAG = "BaseActivity";
 
     protected boolean isShowLifeCycle() {
         return false;
